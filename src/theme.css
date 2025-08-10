@@ -1,0 +1,15 @@
+@theme {
+  --primary-colour:#5D60E9;
+  --color-brand: #5D60E9;
+  --color-brand-hover: #3730A3;
+  --color-bg: #F9FAFB;
+  --color-border: #E5E7EB;
+  --color-text: #111827;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --space-section: 1.5rem;
+  --space-field: 0.75rem;
+}
