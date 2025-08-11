@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
 import Topbar from "../components/TopBar/TopBar";
+import { Outlet } from "react-router-dom";
 
 
 export default function MainLayout({ children }) {
@@ -11,7 +12,9 @@ export default function MainLayout({ children }) {
       <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
       <div className="flex flex-col flex-1">
         <Topbar setSidebarOpen={setSidebarOpen} />
-        <main className="flex-1 p-4 overflow-y-auto">{children}</main>
+        <main className="flex-1 p-4 overflow-y-auto">
+          <Outlet />
+        </main>
       </div>
     </div>
   );

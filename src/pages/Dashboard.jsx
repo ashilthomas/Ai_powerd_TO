@@ -1,7 +1,10 @@
 import React from "react";
-import TodoForm from "../../features/Todo/components/TodoForm";
-import MainLayout from "../../layout/MainLayout";
-import AllTodos from "../../features/Todo/components/AllTodos";
+
+
+
+import TodoForm from "../features/Todo/components/TodoForm";
+import AllTodos from "../features/Todo/components/AllTodos";
+import MainLayout from "../layout/MainLayout";
 
 function Dashbaord() {
   const handleAddTodo = (data) => {
@@ -9,14 +12,15 @@ function Dashbaord() {
     console.log("Todo to save:", data);
   };
   return (
-    <MainLayout>
+    <>
      <div className="flex justify-between px-5">
       <h2 className="text-2xl font-semibold mb-4">All Todos</h2>
       <TodoForm onSubmit={handleAddTodo} />
      </div>
       <AllTodos/>
+      </>
       
-    </MainLayout>
+   
   );
 }
 
