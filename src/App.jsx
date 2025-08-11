@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Setting from "./pages/Setting";
 import Dashboard from "./pages/Dashboard";
 import UserProfile from "./pages/UserProfile";
+import UserDetails from "./pages/UserDetails";
 
 
 function App() {
