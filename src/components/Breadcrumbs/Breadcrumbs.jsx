@@ -1,27 +1,32 @@
-import React from 'react'
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import { Link, useMatches } from "react-router-dom";
 
-function Breadcrumbs() {
-  const location = useLocation();
-  const pathnames = location.pathname.split("/").filter((x) => x);
-  return (
-     <nav>
-      <ul style={{ display: "flex", listStyle: "none" }}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        {pathnames.map((value, index) => {
-          const to = `/${pathnames.slice(0, index + 1).join("/")}`;
-          return (
-            <li key={to} style={{ marginLeft: "8px" }}>
-              <span> / </span>
-              <Link to={to}>{value}</Link>
-            </li>
-          );
-        })}
-      </ul>
-    </nav>
-  )
-}
+const Breadcrumbs = () => {
+  const matches = useMatches();
 
-export default Breadcrumbs
+  // Filter routes with breadcrumb handle
+  const crumbs = matches
+    .filter((match) => match.handle?.breadcrumb)
+    .map((match, index, array) => {
+      const isLast = index === array.length - 1;
+
+      // Resolve breadcrumb label (string or function)
+      const label =
+        typeof match.handle.breadcrumb === "function"
+          ? match.handle.breadcrumb(match)
+          : match.handle.breadcrumb;
+
+      return isLast ? (
+        <span key={match.pathname}>{label}</span>
+      ) : (
+        <span key={match.pathname}>
+          <Link to={match.pathname}>{label}</Link> /{" "}
+        </span>
+      );
+    });
+
+  return <nav>{crumbs}</nav>;
+};
+
+export default Breadcrumbs;
+

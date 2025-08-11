@@ -3,6 +3,7 @@ import MyLogo from "../../assets/logo.jpg";
 import NAVLINKS from "../../utils/NavLinks/NavLinks";
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
     const  sidebarRef = useRef();
@@ -52,14 +53,14 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           </div>
           <nav className="px-4 py-4 space-y-2">
             {NAVLINKS.map(({ name, path, icon }, index) => (
-              <a
+              <Link to={path}
                 key={index}
-                href={path}
+              
                 className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 text-gray-700"
               >
                 {icon}
                 {name}
-              </a>
+              </Link>
             ))}
           </nav>
         </aside>

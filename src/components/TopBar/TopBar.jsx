@@ -1,9 +1,11 @@
 import { Search, Bell, ChevronDown, Menu } from "lucide-react";
+import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 
 
 export default function Topbar({ setSidebarOpen }) {
   return (
     <header className="flex items-center justify-between bg-white px-4 py-3 shadow-sm">
+
       <div className="flex items-center gap-3">
         <button className="md:hidden cusror-pointer" onClick={() => setSidebarOpen(true)}>
           <Menu className="w-6 h-6 text-gray-600 cusror-pointer" />
@@ -37,6 +39,7 @@ export default function Topbar({ setSidebarOpen }) {
           <ChevronDown className="w-4 h-4 text-gray-500" />
         </div>
       </div>
+      <Breadcrumbs/>
     </header>
   );
 }

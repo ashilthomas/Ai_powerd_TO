@@ -6,7 +6,7 @@ import TodoForm from "../features/Todo/components/TodoForm";
 import AllTodos from "../features/Todo/components/AllTodos";
 import MainLayout from "../layout/MainLayout";
 
-function Dashbaord() {
+function Dashboard() {
   const handleAddTodo = (data) => {
     // dispatch Redux or call API
     console.log("Todo to save:", data);
@@ -24,4 +24,4 @@ function Dashbaord() {
   );
 }
 
-export default Dashbaord;
+export default Dashboard;
