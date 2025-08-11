@@ -30,4 +30,12 @@
 }
 
 }
-
+.modal {
+  opacity: 0;
+  visibility: hidden; /* Prevents interaction & layout jumps */
+  transform: scale(0.95) translateY(20px);
+}
+.backdrop {
+  opacity: 0;
+  visibility: hidden;
+}

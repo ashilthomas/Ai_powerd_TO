@@ -28,49 +28,30 @@ function Modal({ isOpen, onClose, children }) {
 
   // Entry animation
 useEffect(() => {
-  if (visible && isOpen && modalRef.current && backdropRef.current) {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
+  if (!visible || !isOpen || !modalRef.current || !backdropRef.current) return;
 
-      // Backdrop fade-in
-      tl.fromTo(
-        backdropRef.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.4, ease: "power2.out" }
-      );
+  let ctx = gsap.context(() => {
+    const tl = gsap.timeline();
 
-      // Modal container animation
-      tl.fromTo(
-        modalRef.current,
-        { opacity: 0, scale: 0.9, y: -20 },
-        {
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          duration: 0.45,
-          ease: "power4.out"
-        },
-        "-=0.2" // overlap slightly with backdrop
-      );
+    tl.set([modalRef.current, backdropRef.current], { visibility: "visible" }); // instantly show without flash
 
-      // Stagger children inside modal
-      // tl.fromTo(
-      //   modalRef.current.querySelectorAll(".modal-child"),
-      //   { opacity: 0, y: 10 },
-      //   {
-      //     opacity: 1,
-      //     y: 0,
-      //     duration: 0.35,
-      //     stagger: 0.05,
-      //     ease: "power2.out"
-      //   },
-      //   "-=0.25" // start before modal fully settles
-      // );
-    }, modalRef);
+    tl.fromTo(
+      backdropRef.current,
+      { opacity: 0 },
+      { opacity: 1, duration: 0.4, ease: "power2.out" }
+    );
 
-    return () => ctx.revert();
-  }
+    tl.fromTo(
+      modalRef.current,
+      { opacity: 0, scale: 0.95, y: 20 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "power4.out" },
+      "-=0.15"
+    );
+  }, modalRef);
+
+  return () => ctx.revert();
 }, [visible, isOpen]);
+
 
   if (!visible) return null;
 
@@ -86,6 +67,11 @@ useEffect(() => {
       <div className="fixed inset-0 z-20 w-screen shadow-blue-500/50  shadow-lg overflow-y-auto flex items-center justify-center p-4">
         <div
           ref={modalRef}
+            style={{
+    opacity: 0,
+    visibility: "hidden",
+    transform: "scale(0.95) translateY(20px)",
+  }}
           className=" p-10 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl  sm:w-[450px] sm:max-w-lg"
         >
           <div className="modal-child">{children}</div>
@@ -93,7 +79,7 @@ useEffect(() => {
             <button
               type="button"
               onClick={onClose}
-             className="bg-[var(--primary-colour)] shadow-blue-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  hover:bg-red-500 transition"
+             className="bg-[var(--primary-colour)] shadow-blue-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  hover:bg-blue-500 transition"
             >
              Add Todo
             </button>

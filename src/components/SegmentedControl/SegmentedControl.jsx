@@ -13,7 +13,7 @@ function SegmentedControl() {
                     key={option}
                     className={`px-7 py-2 rounded-md  border-gray-300 ${    
                         selected === option
-                            ? "bg-blue-500 text-white"
+                            ? "bg-[var(--primary-colour)] text-white"
                             : "bg-white text-gray-800"
                     }`}
                     onClick={() => setSelected(option)}
