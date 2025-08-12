@@ -1,5 +1,7 @@
+import { Slash } from "lucide-react";
 import React from "react";
 import { Link, useMatches } from "react-router-dom";
+
 
 const Breadcrumbs = () => {
   const matches = useMatches();// Get the current route matches
@@ -19,17 +21,17 @@ const Breadcrumbs = () => {
           : match.handle.breadcrumb;// Use the string
 
       return isLast ? (// If it's the last route
-        <span key={match.pathname}>{label}</span>// Render the label
+        <span className="inline-flex items-center gap-3"  key={match.pathname}>{label}</span>// Render the label
       ) : (
-        <span key={match.pathname}>
-          <Link to={match.pathname}>{label}</Link> /{" "}
+        <span className="inline-flex items-center gap-3" key={match.pathname}>
+          <Link to={match.pathname}>{label}</Link> <Slash size={20} />{" "}
         </span>
       );
     });
    
     
 
-  return <nav>{crumbs}</nav>;// Render the breadcrumbs
+  return <nav className="flex gap-3 items-center">{crumbs}</nav>;// Render the breadcrumbs
 };
 
 export default Breadcrumbs;
@@ -39,6 +41,7 @@ export default Breadcrumbs;
 // check if it's the last route store it in a variable and render it
 //finde route is fuction or string if fuction call it and if string render it 
 // check if it's the last route no link and return the label 
+//map running each values in the array
 
 // crumbs = [
 //   <span><Link to="/">Home</Link> / </span>,

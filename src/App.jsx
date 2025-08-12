@@ -7,6 +7,8 @@ import Setting from "./pages/Setting";
 import Dashboard from "./pages/Dashboard";
 import UserProfile from "./pages/UserProfile";
 import UserDetails from "./pages/UserDetails";
+import { House } from "lucide-react";
+import { ThemeProvider } from "./context/ThemeContext";
 
 
 function App() {
@@ -15,7 +17,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    handle: { breadcrumb: "Home" },  // Root breadcrumb label
+    handle: { breadcrumb: <House size={20}/> },  // Root breadcrumb label
     children: [
       {
         index: true,
@@ -44,9 +46,12 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-   return <RouterProvider router={router} />;
+   return(
+   <ThemeProvider>
+   <RouterProvider router={router} />
+   </ThemeProvider>
+) 
 }
-
 export default App;
 // Home / Settings / Profile
 // Home / User / Details

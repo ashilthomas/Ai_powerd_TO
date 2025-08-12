@@ -8,8 +8,8 @@ const TodoCard = ({ todo }) => {
   };
 
   return (
-    <div className=" w-full bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-200 ">
-      <div className="flex justify-between items-start mb-4">
+    <div className="  w-full bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-200 ">
+      <div className="flex  justify-between items-start mb-4">
         <h3 className="text-lg font-semibold text-gray-800">{todo.title}</h3>
         <span
           className={`px-2 py-1 text-xs font-medium rounded-full border ${

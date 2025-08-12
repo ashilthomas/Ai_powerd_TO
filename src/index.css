@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "./theme.css";
-
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   *, *::before, *::after {
@@ -13,6 +13,7 @@
   html {
   scroll-behavior: smooth;
 }
+
 
 @theme {
   --color-brand: #902FE9;
