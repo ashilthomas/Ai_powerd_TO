@@ -67,21 +67,21 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       </div>
 
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-[var(--color-dark-bg)] border-r dark:border-[var(--color-light-border)] shadow-sm">
+      <aside className="hidden md:flex flex-col w-64 bg-white dark:bg-[var(--color-dark-bg)] border-r borderColor shadow-sm">
         <div className="h-16 flex items-center justify-center space-x-2 font-bold text-lg">
           <img
             src={MyLogo}
             alt="Logo"
             className="rounded-full w-10 h-10 object-cover"
           />
-          <span className="font-bold text-3xl text-[var(--color-light-accent-bright-cyan)]">My Todo</span>
+          <span className="font-bold text-3xl mainDarkModeText">My Todo</span>
         </div>
         <nav className="flex-1 px-4 py-4 space-y-2">
           {NAVLINKS.map(({ name, path, icon }, index) => (
             <a
               key={index}
               href={path}
-              className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 text-gray-700"
+              className="flex items-center themeText  gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 text-gray-700"
             >
               {icon}
               {name}

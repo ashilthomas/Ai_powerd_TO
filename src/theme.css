@@ -23,12 +23,13 @@
   /* ---------- Dark Theme ---------- */
   --color-dark-bg: #121420;               /* Page background */
   --color-dark-card-bg: #1F2233;          /* Card background */
-
+/* #2F2F39 */
   /* Dark accents */
   --color-dark-accent-blue: #6079DA;
   --color-dark-accent-green: #6BB374;
   --color-dark-accent-pink: #D98282;
   --color-dark-accent-lavender: #9679E9;
+  --color-dark-accent-blue-purple: #7D7BFF;
 
   /* Dark text */
   --color-dark-text-primary: #E8E8E8;

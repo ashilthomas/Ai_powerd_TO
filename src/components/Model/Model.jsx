@@ -27,31 +27,33 @@ function Modal({ isOpen, onClose, children }) {
   }, [isOpen]);
 
   // Entry animation
-useEffect(() => {
-  if (!visible || !isOpen || !modalRef.current || !backdropRef.current) return;
+  useEffect(() => {
+    if (!visible || !isOpen || !modalRef.current || !backdropRef.current)
+      return;
 
-  let ctx = gsap.context(() => {
-    const tl = gsap.timeline();
+    let ctx = gsap.context(() => {
+      const tl = gsap.timeline();
 
-    tl.set([modalRef.current, backdropRef.current], { visibility: "visible" }); // instantly show without flash
+      tl.set([modalRef.current, backdropRef.current], {
+        visibility: "visible",
+      }); // instantly show without flash
 
-    tl.fromTo(
-      backdropRef.current,
-      { opacity: 0 },
-      { opacity: 1, duration: 0.4, ease: "power2.out" }
-    );
+      tl.fromTo(
+        backdropRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.4, ease: "power2.out" }
+      );
 
-    tl.fromTo(
-      modalRef.current,
-      { opacity: 0, scale: 0.95, y: 20 },
-      { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "power4.out" },
-      "-=0.15"
-    );
-  }, modalRef);
+      tl.fromTo(
+        modalRef.current,
+        { opacity: 0, scale: 0.95, y: 20 },
+        { opacity: 1, scale: 1, y: 0, duration: 0.45, ease: "power4.out" },
+        "-=0.15"
+      );
+    }, modalRef);
 
-  return () => ctx.revert();
-}, [visible, isOpen]);
-
+    return () => ctx.revert();
+  }, [visible, isOpen]);
 
   if (!visible) return null;
 
@@ -67,11 +69,11 @@ useEffect(() => {
       <div className="fixed inset-0 z-20 w-screen shadow-blue-500/50  shadow-lg overflow-y-auto flex items-center justify-center p-4">
         <div
           ref={modalRef}
-            style={{
-    opacity: 0,
-    visibility: "hidden",
-    transform: "scale(0.95) translateY(20px)",
-  }}
+          style={{
+            opacity: 0,
+            visibility: "hidden",
+            transform: "scale(0.95) translateY(20px)",
+          }}
           className=" p-10 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl  sm:w-[450px] sm:max-w-lg"
         >
           <div className="modal-child">{children}</div>
@@ -79,9 +81,9 @@ useEffect(() => {
             <button
               type="button"
               onClick={onClose}
-             className="bg-[var(--color-light-accent-bright-cyan)] shadow-blue-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  hover:bg-blue-500 transition"
+              className="bg-[var(--color-light-accent-bright-cyan)] shadow-blue-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  hover:bg-blue-500 transition"
             >
-             Add Todo
+              Add Todo
             </button>
           </div>
         </div>

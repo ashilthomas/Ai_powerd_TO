@@ -42,10 +42,22 @@
   opacity: 0;
   visibility: hidden;
 }
-
-.themeBg {
+.themeBg{
+  @apply bg-[var(--color-light-bg)] dark:bg-[var(--color-dark-bg)];
+}
+.themeCrdBg {
   @apply bg-[var(--color-light-card-bg)] dark:bg-[var(--color-dark-card-bg)];
 }
 .themeText {
   @apply text-[var(--color-light-text-primary)] dark:text-[var(--color-dark-text-primary)];
+}
+.mainDarkModeText{
+  @apply text-[var(--color-light-accent-vibrant-cyan)] dark:text-[var(--color-dark-accent-blue-purple)];
+}
+.mainDarkModeBtn{
+  @apply bg-[var(--color-light-accent-vibrant-cyan)] dark:bg-[var(--color-dark-accent-blue-purple)];
+}
+
+.borderColor{
+  @apply border-[var(--color-light-border)] dark:border-[var(--color-dark-border)];
 }
