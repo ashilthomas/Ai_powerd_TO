@@ -81,7 +81,7 @@ function Modal({ isOpen, onClose, children }) {
             <button
               type="button"
               onClick={onClose}
-              className="mainDarkModeBtn shadow-cyan-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  transition"
+              className="mainDarkModeBtn  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-md w-full text-white  transition"
             >
               Add Todo
             </button>

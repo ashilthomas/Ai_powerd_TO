@@ -113,7 +113,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
             <div className="flex flex-col items-center gap-2">
               <h2>Premium User</h2>
               <span className="text-center cursor-pointer">
-                <ArrowBigRight size={20} />
+                <ArrowBigRight className="mainDarkModeText" fill="bg-[var(--color-light-accent-vibrant-cyan)] dark:bg-[var(--color-dark-accent-blue-purple)]" size={20} />
               </span>
             </div>
           </div>
