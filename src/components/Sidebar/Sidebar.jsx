@@ -1,14 +1,16 @@
-import { X } from "lucide-react";
+import { ArrowBigRight, X } from "lucide-react";
 import MyLogo from "../../assets/logo.jpg";
 import NAVLINKS from "../../utils/NavLinks/NavLinks";
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router";
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
-    const  sidebarRef = useRef();
- useEffect(() => {
-    if (sidebarOpen) {//i need animation when mobile bar
+  const sidebarRef = useRef();
+  useEffect(() => {
+    if (sidebarOpen) {
+      //i need animation when mobile bar
       gsap.fromTo(
         sidebarRef.current,
         { width: 0, opacity: 0 },
@@ -17,30 +19,37 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           opacity: 1,
           duration: 0.4,
           ease: "power3.out",
-          clearProps: "width" // reset width after animation so Tailwind works
+          clearProps: "width", // reset width after animation so Tailwind works
         }
       );
-    } else {//i need animation when mobile bar
+    } else {
+      //i need animation when mobile bar
       gsap.to(sidebarRef.current, {
         width: 0,
         opacity: 0,
         duration: 0.3,
-        ease: "power3.in"
+        ease: "power3.in",
       });
     }
   }, [sidebarOpen]);
-    //i need animation when mobile bar 
-
+  //i need animation when mobile bar
 
   return (
     <>
       {/* Mobile Sidebar */}
-      <div className={`fixed inset-0 z-40 md:hidden ${sidebarOpen ? "" : "hidden"}`}>
+      <div
+        className={`fixed inset-0 z-40 md:hidden ${
+          sidebarOpen ? "" : "hidden"
+        }`}
+      >
         <div
           className="absolute inset-0 bg-black bg-opacity-50"
           onClick={() => setSidebarOpen(false)}
         />
-        <aside ref={sidebarRef} className="relative z-50 w-64 bg-white h-full shadow-lg">
+        <aside
+          ref={sidebarRef}
+          className="relative z-50 w-64 bg-white h-full shadow-lg"
+        >
           <div className="flex items-center justify-between h-16 px-4 border-b">
             <img
               src={MyLogo}
@@ -53,9 +62,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           </div>
           <nav className="px-4 py-4 space-y-2">
             {NAVLINKS.map(({ name, path, icon }, index) => (
-              <Link to={path}
+              <Link
+                to={path}
                 key={index}
-              
                 className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 text-gray-700"
               >
                 {icon}
@@ -78,16 +87,37 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
         </div>
         <nav className="flex-1 px-4 py-4 space-y-2">
           {NAVLINKS.map(({ name, path, icon }, index) => (
-            <a
+            <NavLink
               key={index}
-              href={path}
-              className="flex items-center themeText  gap-3 px-3 py-2 rounded-lg hover:bg-blue-50 text-gray-700"
+              to={path}
+              className={({ isActive }) =>
+                `flex items-center themeText gap-3 px-3 py-2 rounded-lg  ${
+                  isActive ? "active" : ""
+                }`
+              }
             >
               {icon}
               {name}
-            </a>
+            </NavLink>
           ))}
         </nav>
+        <div className=" borderColor px-3 py-2">
+          <div className="flex items-center gap-3 px-3 py-10 rounded-2xl bg-[var(--color-light-card-bg)] dark:bg-[var(--color-dark-card-bg)] ">
+            <span>
+              <img
+                src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=76&q=80"
+                alt=""
+                className="w-10 h-10 rounded-full"
+              />
+            </span>
+            <div className="flex flex-col items-center gap-2">
+              <h2>Premium User</h2>
+              <span className="text-center cursor-pointer">
+                <ArrowBigRight size={20} />
+              </span>
+            </div>
+          </div>
+        </div>
       </aside>
     </>
   );

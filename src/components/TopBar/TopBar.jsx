@@ -4,6 +4,7 @@ import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
 
 export default function Topbar({ setSidebarOpen }) {
+ 
   return (
     <header className="flex items-center border-b borderColor themeBg text-black dark:text-white justify-between bg-white px-4 py-3 shadow-sm">
 

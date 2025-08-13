@@ -61,3 +61,9 @@
 .borderColor{
   @apply border-[var(--color-light-border)] dark:border-[var(--color-dark-border)];
 }
+.themeBgHover {
+  @apply hover:bg-[var(--color-light-card-bg)] dark:hover:bg-[var(--color-dark-card-bg)];
+}
+.active{
+  @apply bg-[var(--color-light-accent-vibrant-cyan)] dark:bg-[var(--color-dark-accent-blue-purple)] text-[var(--color-light-text-primary)] dark:text-[var(--color-dark-bg)];
+}
