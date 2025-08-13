@@ -74,14 +74,14 @@ function Modal({ isOpen, onClose, children }) {
             visibility: "hidden",
             transform: "scale(0.95) translateY(20px)",
           }}
-          className=" p-10 relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl  sm:w-[450px] sm:max-w-lg"
+          className=" p-10 relative transform themeBg overflow-hidden rounded-lg bg-white text-left shadow-xl  sm:w-[450px] sm:max-w-lg"
         >
-          <div className="modal-child">{children}</div>
-          <div className="modal-child bg-gray-50 px-4 py-3 flex justify-end">
+          <div className="modal-child ">{children}</div>
+          <div className="modal-childpx-4 py-3 flex justify-end">
             <button
               type="button"
               onClick={onClose}
-              className="bg-[var(--color-light-accent-bright-cyan)] shadow-blue-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  hover:bg-blue-500 transition"
+              className="mainDarkModeBtn shadow-cyan-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  transition"
             >
               Add Todo
             </button>

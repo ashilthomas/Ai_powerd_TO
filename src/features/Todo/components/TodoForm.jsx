@@ -21,7 +21,7 @@ function TodoForm({ onSubmit, initialData = {} }) {
     <div>
       <button
         onClick={() => setIsOpen(true)}
-        className=" flex items-center gap-2 cursor-pointermain bg-[var(--color-light-accent-vibrant-cyan)] dark:bg-[var(--color-dark-accent-blue-purple)] text-white px-4 py-2 rounded hover:bg-[var(--color-light-accent-bright-cyan-hover)] transition duration-200 cursor-pointer"
+        className=" flex items-center gap-2 cursor-pointermain mainDarkModeBtn text-white px-4 py-2 rounded hover:bg-[var(--color-light-accent-bright-cyan-hover)] transition duration-200 cursor-pointer"
       >
         Add Todo <span><Plus size={20}/></span>
       </button>

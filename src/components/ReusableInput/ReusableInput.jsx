@@ -11,7 +11,7 @@ function ReusableInput({
   icon: Icon // pass the icon component here
 }) {
   return (
-    <div className="flex items-center shadow-lg border border-gray-300  p-3 rounded-full relative w-full">
+    <div className="flex items-center shadow-lg border borderColor  p-3 rounded-full relative w-full">
       <input
         type={type}
         name={name}
