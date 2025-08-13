@@ -12,6 +12,8 @@
 
   html {
   scroll-behavior: smooth;
+
+
 }
 
 
@@ -39,4 +41,11 @@
 .backdrop {
   opacity: 0;
   visibility: hidden;
+}
+
+.themeBg {
+  @apply bg-[var(--color-light-card-bg)] dark:bg-[var(--color-dark-card-bg)];
+}
+.themeText {
+  @apply text-[var(--color-light-text-primary)] dark:text-[var(--color-dark-text-primary)];
 }

@@ -8,9 +8,9 @@ const TodoCard = ({ todo }) => {
   };
 
   return (
-    <div className="  w-full bg-white rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-200 ">
+    <div className="  w-full themeBg rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border border-gray-200 ">
       <div className="flex  justify-between items-start mb-4">
-        <h3 className="text-lg font-semibold text-gray-800">{todo.title}</h3>
+        <h3 className="text-lg font-semibold text-gray-800 dark:text-[var(--color-dark-text-primary)]">{todo.title}</h3>
         <span
           className={`px-2 py-1 text-xs font-medium rounded-full border ${
             priorityColors[todo.priority]
@@ -19,10 +19,10 @@ const TodoCard = ({ todo }) => {
           {todo.priority.charAt(0).toUpperCase() + todo.priority.slice(1)}
         </span>
       </div>
-      <p className="text-gray-600 text-sm mb-4">{todo.description}</p>
+      <p className="themeText text-sm mb-4">{todo.description}</p>
       <div className="mb-4">
         <span className="text-xs font-medium text-gray-500">Due: </span>
-        <span className="text-sm text-gray-700">{todo.dueDate}</span>
+        <span className="text-sm text-gray-600 dark:text-[var(--color-dark-text-secondary)]">{todo.dueDate}</span>
       </div>
       <div className="flex flex-wrap  justify-between gap-2">
         <div className="">

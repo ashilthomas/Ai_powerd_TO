@@ -1,15 +1,39 @@
 @theme {
-  --primary-colour:#5D60E9;
-  --color-brand: #5D60E9;
-  --color-brand-hover: #3730A3;
-  --color-bg: #F9FAFB;
-  --color-border: #E5E7EB;
-  --color-text: #111827;
+  /* ---------- Light Theme ---------- */
+  --color-light-bg: #FFFFFF;              /* Page background */
+  --color-light-card-bg: #FFFFFF;
+  /* #F7F8FA;         Card background */
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  /* Light accents */
+  --color-light-accent-blue: #83A9F4;
+  --color-light-accent-green: #8CD790;
+  --color-light-accent-pink: #F39C9C;
+  --color-light-accent-lavender: #BFA6F9;
+  --color-light-accent-bright-cyan: #33AFFF;
+  /* hover button */
+  --color-light-accent-bright-cyan-hover: #4AB8FF;
 
-  --space-section: 1.5rem;
-  --space-field: 0.75rem;
+  /* Light text */
+  --color-light-text-primary: #222222;
+  --color-light-text-secondary: #555555;
+
+  /* Light borders & shadows */
+  --color-light-border: #E1E4EB;
+
+  /* ---------- Dark Theme ---------- */
+  --color-dark-bg: #121420;               /* Page background */
+  --color-dark-card-bg: #1F2233;          /* Card background */
+
+  /* Dark accents */
+  --color-dark-accent-blue: #6079DA;
+  --color-dark-accent-green: #6BB374;
+  --color-dark-accent-pink: #D98282;
+  --color-dark-accent-lavender: #9679E9;
+
+  /* Dark text */
+  --color-dark-text-primary: #E8E8E8;
+  --color-dark-text-secondary: #B0B0B0;
+
+  /* Dark borders & shadows */
+  --color-dark-border: #2F3246;
 }

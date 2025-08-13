@@ -79,7 +79,7 @@ useEffect(() => {
             <button
               type="button"
               onClick={onClose}
-             className="bg-[var(--primary-colour)] shadow-blue-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  hover:bg-blue-500 transition"
+             className="bg-[var(--color-light-accent-bright-cyan)] shadow-blue-500/50  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-full text-white  hover:bg-blue-500 transition"
             >
              Add Todo
             </button>
