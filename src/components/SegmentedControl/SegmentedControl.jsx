@@ -26,4 +26,4 @@ function SegmentedControl() {
   )
 }
 
-export default SegmentedControl
+export default React.memo(SegmentedControl)

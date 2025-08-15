@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 
 
@@ -8,10 +8,10 @@ import MainLayout from "../layout/MainLayout";
 import Breadcrumbs from "../components/Breadcrumbs/Breadcrumbs";
 
 function Dashboard() {
-  const handleAddTodo = (data) => {
+  const handleAddTodo = useCallback((data) => {
     // dispatch Redux or call API
     console.log("Todo to save:", data);
-  };
+  }, []);
   return (
     <>
      <div className="flex justify-between px-5">

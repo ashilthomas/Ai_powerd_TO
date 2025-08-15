@@ -1,8 +1,10 @@
 import { Plus, Trash } from "lucide-react";
+import React from "react";
 import TodoCard from "../../../components/TodoCard/TodoCard";
 
 const todoData = [
   {
+    id: "proposal",
     title: "Complete Project Proposal",
     description: "Draft and finalize the project proposal for client meeting",
     priority: "high",
@@ -11,6 +13,7 @@ const todoData = [
      delete:<Trash className="cursor-pointer text-red-500" size={20}/>
   },
   {
+    id: "grocery",
     title: "Grocery Shopping",
     description: "Buy groceries for the week, including vegetables, milk, and snacks",
     priority: "medium",
@@ -19,6 +22,7 @@ const todoData = [
    delete:<Trash className="cursor-pointer text-red-500" size={20}/>
   },
   {
+    id: "team-meeting",
     title: "Schedule Team Meeting",
     description: "Organize a team sync to discuss project milestones",
     priority: "medium",
@@ -27,6 +31,7 @@ const todoData = [
     delete:<Trash className="cursor-pointer text-red-500" size={20}/>
   },
   {
+    id: "workout",
     title: "Morning Workout",
     description: "Complete 30-minute cardio session at the gym",
     priority: "low",
@@ -35,6 +40,7 @@ const todoData = [
     delete:<Trash className="cursor-pointer text-red-500" size={20}/>
   },
   {
+    id: "paper",
     title: "Read Research Paper",
     description: "Review AI ethics paper for upcoming discussion",
     priority: "high",
@@ -43,6 +49,7 @@ const todoData = [
     delete:<Trash className="cursor-pointer text-red-500" size={20}/>
   },
   {
+    id: "trip",
     title: "Plan Weekend Trip",
     description: "Research destinations and book accommodations",
     priority: "low",
@@ -51,6 +58,7 @@ const todoData = [
      delete:<Trash className="cursor-pointer text-red-500" size={20}/>
   },
   {
+    id: "portfolio",
     title: "Update Portfolio Website",
     description: "Add recent projects and fix responsive design issues",
     priority: "medium",
@@ -59,6 +67,7 @@ const todoData = [
     delete:<Trash className="cursor-pointer text-red-500" size={20}/>
   },
   {
+    id: "doctor",
     title: "Doctor Appointment",
     description: "Annual check-up with Dr. Smith",
     priority: "high",
@@ -72,8 +81,8 @@ function AllTodos() {
     <div>
         
         <div className="w-full mx-auto mt-8 grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {todoData.map((todo, index) => (
-            <TodoCard key={index} todo={todo} />
+          {todoData.map((todo) => (
+            <TodoCard key={todo.id} todo={todo} />
           ))}
         </div>
         
@@ -81,4 +90,4 @@ function AllTodos() {
   )
 }
 
-export default AllTodos
+export default React.memo(AllTodos)
