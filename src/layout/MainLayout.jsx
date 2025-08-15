@@ -4,7 +4,7 @@ import Topbar from "../components/TopBar/TopBar";
 import { Outlet } from "react-router-dom";
 
 
-export default function MainLayout({ children }) {
+export default function MainLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -14,6 +14,7 @@ export default function MainLayout({ children }) {
         <Topbar setSidebarOpen={setSidebarOpen} />
         <main className="flex-1 p-4 overflow-y-auto">
           <Outlet />
+          
         </main>
       </div>
     </div>

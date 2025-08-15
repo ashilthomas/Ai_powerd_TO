@@ -9,6 +9,7 @@ import UserProfile from "./pages/UserProfile";
 import UserDetails from "./pages/UserDetails";
 import { House } from "lucide-react";
 import { ThemeProvider } from "./context/ThemeContext";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 
 function App() {
@@ -45,6 +46,11 @@ const router = createBrowserRouter([
       },
     ],
   },
+  //add error page
+  {
+    path: "*",
+    element: <ErrorPage />  ,
+  }
 ]);
    return(
    <ThemeProvider>

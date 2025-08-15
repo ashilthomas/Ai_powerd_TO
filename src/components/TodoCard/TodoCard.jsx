@@ -1,11 +1,13 @@
 import React from "react";
 
-const TodoCard = ({ todo }) => {
-  const priorityColors = {
+import PropTypes from 'prop-types';
+ const priorityColors = {
     high: "bg-red-100 text-red-800 border-red-300",
     medium: "bg-yellow-100 text-yellow-800 border-yellow-300",
     low: "bg-green-100 text-green-800 border-green-300",
   };
+const TodoCard = ({ todo }) => {
+ 
 
   return (
     <div className="  w-full themeCrdBg  rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300 p-6 border borderColor ">
@@ -44,5 +46,15 @@ const TodoCard = ({ todo }) => {
     </div>
   );
 };
-
+// PropTypes
+TodoCard.propTypes = {
+  todo: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    priority: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    dueDate: PropTypes.string.isRequired,
+    tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+    delete: PropTypes.node.isRequired,
+  }).isRequired,
+};
 export default TodoCard;

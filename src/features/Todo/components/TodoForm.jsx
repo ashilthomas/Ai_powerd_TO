@@ -23,17 +23,16 @@ function TodoForm({ onSubmit, initialData = {} }) {
         onClick={() => setIsOpen(true)}
         className=" flex items-center gap-2 cursor-pointermain mainDarkModeBtn text-white px-4 py-2 rounded hover:bg-[var(--color-light-accent-bright-cyan-hover)] transition duration-200  delay-150  ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer"
       >
-        Add Todo <span><Plus size={20}/></span>
+        Add Todo{" "}
+        <span>
+          <Plus size={20} />
+        </span>
       </button>
 
       {/* Always render Model, animation controls mount/unmount */}
       <Model isOpen={isOpen} onClose={() => setIsOpen(false)}>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4 ">
           <h2 className="text-xl font-semibold mb-4">Add Todo</h2>
-
-          
-
-       
 
           <ReusableInput
             type="text"
@@ -42,12 +41,7 @@ function TodoForm({ onSubmit, initialData = {} }) {
             onChange={handleChange}
             value={todo.title}
             icon={Plus}
-
-          
           />
-        
-         
-          
 
           <ReusableInput
             type="text"
@@ -64,10 +58,9 @@ function TodoForm({ onSubmit, initialData = {} }) {
             value={todo.description}
           />
 
-         
           {/* //due date */}
 
-          <SegmentedControl/>
+          <SegmentedControl />
 
           <ReusableInput
             type="date"
@@ -85,10 +78,3 @@ function TodoForm({ onSubmit, initialData = {} }) {
 
 export default TodoForm;
 
-//3 hour project
-//1 hour logic build using hackerrank
-// 1 hour for problem solving
-//1 hour for learing concept for interview
-//nextjs
-//gsap
-//open source attempt
