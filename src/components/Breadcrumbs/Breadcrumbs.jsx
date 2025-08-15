@@ -34,7 +34,7 @@ const Breadcrumbs = () => {
   return <nav className="flex gap-3 items-center">{crumbs}</nav>;// Render the breadcrumbs
 };
 
-export default Breadcrumbs;
+export default React.memo(Breadcrumbs);
 
 // access route data using useMatches hook that is an array of route objects that handle the current location params difine from app.jsx
 //find the route with breadcrumb handle

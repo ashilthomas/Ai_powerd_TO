@@ -27,4 +27,4 @@ function ReusableInput({
   );
 }
 
-export default ReusableInput;
+export default React.memo(ReusableInput);

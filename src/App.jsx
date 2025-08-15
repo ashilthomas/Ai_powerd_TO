@@ -10,9 +10,6 @@ import UserDetails from "./pages/UserDetails";
 import { House } from "lucide-react";
 import { ThemeProvider } from "./context/ThemeContext";
 
-
-function App() {
-
 const router = createBrowserRouter([
   {
     path: "/",
@@ -46,7 +43,9 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-   return(
+
+function App() {
+  return(
    <ThemeProvider>
    <RouterProvider router={router} />
    </ThemeProvider>

@@ -1,25 +1,42 @@
 //make a hook that will handle the form logic for the todo form
 
-import { useState } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 
-export const useTodoForm = ({initialData}) => {
-  const [todo, setTodo] = useState({
-    title: "",
-    description: "",
-    priority: "low",
-    dueDate: "",
-    tags: [],
-    ...initialData,
-  });
+export const useTodoForm = (initialData = {}) => {
+  const initial = useMemo(
+    () => ({
+      title: "",
+      description: "",
+      priority: "low",
+      dueDate: "",
+      tags: [],
+      ...initialData,
+    }),
+    [initialData]
+  );
 
-  const handleChange = (e) => {
+  const [todo, setTodo] = useState(initial);
+
+  useEffect(() => {
+    setTodo(initial);
+  }, [initial]);
+
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
-    setTodo((prev) => ({    
+    setTodo((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === "tags"
+        ? value
+            .split(",")
+            .map((t) => t.trim())
+            .filter(Boolean)
+        : value,
     }));
-  };
- 
+  }, []);
 
-  return { todo, handleChange, };
+  const resetForm = useCallback(() => {
+    setTodo(initial);
+  }, [initial]);
+
+  return { todo, handleChange, resetForm };
 };
