@@ -48,4 +48,5 @@ function Dropdown({ label, options, value, onChange }) {
 }
 
 
-export default Dropdown
+// Memoize the component to prevent unnecessary re-renders
+export default React.memo(Dropdown)

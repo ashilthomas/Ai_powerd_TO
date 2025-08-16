@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { useTheme } from "../../context/ThemeContext";
 import { Moon, Sun } from "lucide-react";
 
-function ThemeToggle() {
+const ThemeToggle = React.memo(function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
+  
+  // Memoize the toggle handler
+  const handleToggle = useCallback(() => {
+    toggleTheme();
+  }, [toggleTheme]);
+  
   return (
     <>
       <button
-        onClick={toggleTheme}
+        onClick={handleToggle}
         className=" items-center rounded-lg p-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer"
       >
         {theme === "dark" ? (
@@ -18,6 +24,6 @@ function ThemeToggle() {
       </button>
     </>
   );
-}
+})
 
 export default ThemeToggle;

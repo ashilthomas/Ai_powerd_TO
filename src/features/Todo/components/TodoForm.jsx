@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { useTodoForm } from "../hooks/useTodoForm";
 import Model from "../../../components/Model/Model";
 import ReusableInput from "../../../components/ReusableInput/ReusableInput";
@@ -6,21 +6,32 @@ import DropDown from "../../../components/DropDown/DropDown";
 import { Plus } from "lucide-react";
 import SegmentedControl from "../../../components/SegmentedControl/SegmentedControl";
 
-function TodoForm({ onSubmit, initialData = {} }) {
+const TodoForm = React.memo(function TodoForm({ onSubmit, initialData = {} }) {
   const [isOpen, setIsOpen] = useState(false);
   const { todo, handleChange, resetForm } = useTodoForm(initialData);
 
-  const handleSubmit = (e) => {
+  // Memoize the submit handler
+  const handleSubmit = useCallback((e) => {
     e.preventDefault();
     onSubmit(todo);
     resetForm();
     setIsOpen(false); // triggers fade-out
-  };
+  }, [onSubmit, todo, resetForm]);
+  
+  // Memoize the open modal handler
+  const handleOpenModal = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+  
+  // Memoize the close modal handler
+  const handleCloseModal = useCallback(() => {
+    setIsOpen(false);
+  }, []);
 
   return (
     <div>
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpenModal}
         className=" flex items-center gap-2 cursor-pointermain mainDarkModeBtn text-white px-4 py-2 rounded hover:bg-[var(--color-light-accent-bright-cyan-hover)] transition duration-200  delay-150  ease-in-out hover:-translate-y-1 hover:scale-110 cursor-pointer"
       >
         Add Todo{" "}
@@ -30,7 +41,7 @@ function TodoForm({ onSubmit, initialData = {} }) {
       </button>
 
       {/* Always render Model, animation controls mount/unmount */}
-      <Model isOpen={isOpen} onClose={() => setIsOpen(false)}>
+      <Model isOpen={isOpen} onClose={handleCloseModal}>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4 ">
           <h2 className="text-xl font-semibold mb-4">Add Todo</h2>
 
@@ -74,7 +85,7 @@ function TodoForm({ onSubmit, initialData = {} }) {
       </Model>
     </div>
   );
-}
+})
 
 export default TodoForm;
 

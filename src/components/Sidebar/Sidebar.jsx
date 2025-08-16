@@ -1,34 +1,60 @@
+import React, { useEffect, useRef } from "react";
 import { ArrowBigRight, X } from "lucide-react";
 import MyLogo from "../../assets/logo.jpg";
 import userAvatar from "../../assets/my.png";
 import NAVLINKS from "../../utils/NavLinks/NavLinks";
 import { gsap } from "gsap";
-import { useEffect, useRef } from "react";
 import { Link, NavLink } from "react-router-dom";
 
-export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
+const Sidebar = React.memo(function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const sidebarRef = useRef();
+  const animationRef = useRef(null);
+  
   useEffect(() => {
+    // Kill any existing animation to prevent conflicts
+    if (animationRef.current) {
+      animationRef.current.kill();
+    }
+    
     if (sidebarOpen) {
-      gsap.fromTo(
+      // Create a new animation and store the reference
+      animationRef.current = gsap.fromTo(
         sidebarRef.current,
-        { width: 0, opacity: 0 },
+        { width: 0, opacity: 0, xPercent: -100 }, // Add transform instead of just width for better performance
         {
           width: 256, // Tailwind w-64
           opacity: 1,
+          xPercent: 0,
           duration: 0.4,
           ease: "power3.out",
           clearProps: "width", // reset width after animation so Tailwind works
+          onComplete: () => {
+            // Clean up animation reference when done
+            animationRef.current = null;
+          }
         }
       );
-    } else {
-      gsap.to(sidebarRef.current, {
+    } else if (sidebarRef.current) { // Check if ref exists
+      // Create a new animation and store the reference
+      animationRef.current = gsap.to(sidebarRef.current, {
         width: 0,
         opacity: 0,
+        xPercent: -100, // Add transform for better performance
         duration: 0.3,
         ease: "power3.in",
+        onComplete: () => {
+          // Clean up animation reference when done
+          animationRef.current = null;
+        }
       });
     }
+    
+    // Cleanup function to kill animation if component unmounts during animation
+    return () => {
+      if (animationRef.current) {
+        animationRef.current.kill();
+      }
+    };
   }, [sidebarOpen]);
 
   return (
@@ -118,4 +144,6 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       </aside>
     </>
   );
-}
+});
+
+export default Sidebar;

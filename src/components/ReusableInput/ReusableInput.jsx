@@ -27,4 +27,5 @@ function ReusableInput({
   );
 }
 
-export default ReusableInput;
+// Memoize the component to prevent unnecessary re-renders when props don't change
+export default React.memo(ReusableInput);

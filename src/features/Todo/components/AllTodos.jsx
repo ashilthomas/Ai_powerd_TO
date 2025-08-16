@@ -1,6 +1,8 @@
-import { Plus, Trash } from "lucide-react";
+import React, { useState, useMemo } from "react";
+import {  Trash } from "lucide-react";
 import TodoCard from "../../../components/TodoCard/TodoCard";
-import { useState } from "react";
+import { FixedSizeGrid } from "react-window";
+import AutoSizer from "react-virtualized-auto-sizer";
 
 const todoData = [
   {
@@ -133,21 +135,69 @@ const todoData = [
   },
 ];
 
-function AllTodos() {
+const AllTodos = React.memo(function AllTodos() {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
+  const [isVirtualized, setIsVirtualized] = useState(true);
 
+  // Calculate pagination values
   const totalPages = Math.ceil(todoData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentItems = todoData.slice(startIndex, startIndex + itemsPerPage);
 
+  // Memoize the grid cell renderer for better performance
+  const Cell = useMemo(() => {
+    return ({ columnIndex, rowIndex, style }) => {
+      const index = rowIndex * 3 + columnIndex;
+      if (index >= todoData.length) return null;
+      
+      return (
+        <div style={{
+          ...style,
+          padding: '8px',
+        }}>
+          <TodoCard todo={todoData[index]} />
+        </div>
+      );
+    };
+  }, [todoData]);
+
   return (
     <div>
-      <div className="w-full mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {currentItems.map((todo, index) => (
-          <TodoCard key={index} todo={todo} />
-        ))}
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold">All Todos</h2>
+        <button 
+          onClick={() => setIsVirtualized(!isVirtualized)}
+          className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+        >
+          {isVirtualized ? "Switch to Standard View" : "Switch to Virtualized View"}
+        </button>
       </div>
+
+      {isVirtualized ? (
+        <div className="w-full h-[600px]">
+          <AutoSizer>
+            {({ height, width }) => (
+              <FixedSizeGrid
+                columnCount={3}
+                columnWidth={width / 3}
+                height={height}
+                rowCount={Math.ceil(todoData.length / 3)}
+                rowHeight={250}
+                width={width}
+              >
+                {Cell}
+              </FixedSizeGrid>
+            )}
+          </AutoSizer>
+        </div>
+      ) : (
+        <div className="w-full mx-auto mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {currentItems.map((todo, index) => (
+            <TodoCard key={index} todo={todo} />
+          ))}
+        </div>
+      )}
 
       {/* Pagination */}
       <div className="flex justify-center items-center gap-4 mt-4">
@@ -171,6 +221,6 @@ function AllTodos() {
       </div>
     </div>
   );
-}
+});
 
 export default AllTodos;

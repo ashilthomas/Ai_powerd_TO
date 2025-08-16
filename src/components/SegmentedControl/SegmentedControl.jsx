@@ -1,10 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useMemo } from 'react'
 
-
-  const options = ["Low", "Medium", "High"];
-
-function SegmentedControl() {
-      const [selected, setSelected] = useState("Medium");
+const SegmentedControl = React.memo(function SegmentedControl({ value, onChange }) {
+  // Use provided value or default to "Medium"
+  const [selected, setSelected] = useState(value || "Medium");
+  
+  // Memoize options array
+  const options = useMemo(() => ["Low", "Medium", "High"], []);
+  
+  // Memoize the click handler
+  const handleOptionClick = useCallback((option) => {
+    setSelected(option);
+    // If onChange prop is provided, call it with the selected option
+    if (onChange) {
+      onChange(option);
+    }
+  }, [onChange]);
   return (
     <div>
         <div className="p-1 flex  items-center shadow-lg justify-around  gap-2">
@@ -16,7 +26,7 @@ function SegmentedControl() {
                             ? "mainDarkModeBtn text-white"
                             : "bg-[#2D2E41] text-white"
                     }`}
-                    onClick={() => setSelected(option)}
+                    onClick={() => handleOptionClick(option)}
                 >
                     {option}
                 </button>
@@ -24,6 +34,6 @@ function SegmentedControl() {
         </div>  
     </div>
   )
-}
+})
 
 export default SegmentedControl

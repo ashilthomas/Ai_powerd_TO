@@ -1,25 +1,29 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 
 export const useTodoForm = ({initialData}) => {
-  const [todo, setTodo] = useState({
+  // Use useMemo for the initial state to avoid recreating on every render
+  const initialState = useMemo(() => ({
     title: "",
     description: "",
     priority: "low",
     dueDate: "",
     tags: [],
     ...initialData,
-  });
+  }), [initialData]);
+  
+  const [todo, setTodo] = useState(initialState);
 
-  const handleChange = (e) => {
+  // Memoize the change handler
+  const handleChange = useCallback((e) => {
     const { name, value } = e.target;
     setTodo((prev) => ({    
       ...prev,
       [name]: value,
     }));
-  };
+  }, []);
  
-
-  const resetForm = () => {
+  // Memoize the reset function
+  const resetForm = useCallback(() => {
     setTodo({
       title: "",
       description: "",
@@ -28,7 +32,7 @@ export const useTodoForm = ({initialData}) => {
       tags: [],
       ...initialData,
     });
-  };
+  }, [initialData]);
 
   return { todo, handleChange, resetForm };
 };

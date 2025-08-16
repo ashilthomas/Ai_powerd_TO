@@ -57,4 +57,5 @@ TodoCard.propTypes = {
     delete: PropTypes.node.isRequired,
   }).isRequired,
 };
-export default TodoCard;
+// Memoize the component to prevent unnecessary re-renders when props don't change
+export default React.memo(TodoCard);

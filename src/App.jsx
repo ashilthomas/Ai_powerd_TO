@@ -1,20 +1,28 @@
-import React from "react";
-
-import Breadcrumbs from "./components/Breadcrumbs/Breadcrumbs";
-import MainLayout from "./layout/MainLayout";
+import React, { Suspense, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Setting from "./pages/Setting";
-import Dashboard from "./pages/Dashboard";
-import UserProfile from "./pages/UserProfile";
-import UserDetails from "./pages/UserDetails";
 import { House } from "lucide-react";
 import { ThemeProvider } from "./context/ThemeContext";
-import ErrorPage from "./components/ErrorPage/ErrorPage";
+
+// Import only the MainLayout eagerly as it's needed for the initial render
+import MainLayout from "./layout/MainLayout";
+
+// Lazy load all other components
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Setting = lazy(() => import("./pages/Setting"));
+const UserProfile = lazy(() => import("./pages/UserProfile"));
+const UserDetails = lazy(() => import("./pages/UserDetails"));
+const ErrorPage = lazy(() => import("./components/ErrorPage/ErrorPage"));
+
+// Loading fallback component
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center h-screen">
+    <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+  </div>
+);
 
 
 function App() {
-
-const router = createBrowserRouter([
+  const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
@@ -22,34 +30,54 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Dashboard />,
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Dashboard />
+          </Suspense>
+        ),
         handle: { breadcrumb: "Dashboard" },
       },
       {
         path: "settings",
-        element: <Setting />,
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Setting />
+          </Suspense>
+        ),
         handle: { breadcrumb: "Settings" },
       },
       {
-        path: "user",// Nested route's parent route 
-        element: <UserProfile />,// Nested route 
-        handle: { breadcrumb: "User" },// Nested route 
+        path: "user",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <UserProfile />
+          </Suspense>
+        ),
+        handle: { breadcrumb: "User" },
         children: [
           {
-            path: ":userId",// Nested route
-            element: <UserDetails />,// Nested route
+            path: ":userId",
+            element: (
+              <Suspense fallback={<LoadingFallback />}>
+                <UserDetails />
+              </Suspense>
+            ),
             handle: {
-              breadcrumb: (match) => `Details: ${match.params.userId}`, // Dynamic breadcrumb
+              breadcrumb: (match) => `Details: ${match.params.userId}`,
             },
           },
         ],
       },
     ],
   },
-  //add error page
+  // Error page
   {
     path: "*",
-    element: <ErrorPage />  ,
+    element: (
+      <Suspense fallback={<LoadingFallback />}>
+        <ErrorPage />
+      </Suspense>
+    ),
   }
 ]);
    return(

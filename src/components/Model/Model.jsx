@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 
-function Modal({ isOpen, onClose, children }) {
+const Modal = React.memo(function Modal({ isOpen, onClose, children }) {
   const modalRef = useRef(null);
   const backdropRef = useRef(null);
   const [visible, setVisible] = useState(isOpen);
@@ -26,7 +26,7 @@ function Modal({ isOpen, onClose, children }) {
     }
   }, [isOpen]);
 
-  // Entry animation
+  // Entry animation with optimized dependencies
   useEffect(() => {
     if (!visible || !isOpen || !modalRef.current || !backdropRef.current)
       return;
@@ -53,7 +53,7 @@ function Modal({ isOpen, onClose, children }) {
     }, modalRef);
 
     return () => ctx.revert();
-  }, [visible, isOpen]);
+  }, [visible, isOpen]); // These are the only dependencies needed
 
   if (!visible) return null;
 
@@ -90,6 +90,6 @@ function Modal({ isOpen, onClose, children }) {
       </div>
     </div>
   );
-}
+})
 
 export default Modal;
