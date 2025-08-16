@@ -1,6 +1,6 @@
 import { Search, Bell, ChevronDown, Menu } from "lucide-react";
-import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import userAvatar from "../../assets/my.png";
 
 
 export default function Topbar({ setSidebarOpen }) {
@@ -32,9 +32,9 @@ export default function Topbar({ setSidebarOpen }) {
         </button>
         <div className="flex items-center gap-2 cursor-pointer">
           <img
-            src="https://randomuser.me/api/portraits/men/32.jpg"
+            src={userAvatar}
             alt="Profile"
-            className="w-8 h-8 rounded-full"
+            className="w-8 h-8 rounded-full object-cover"
           />
           <span className="hidden sm:inline text-sm font-medium dark:text-white text-gray-700">
             John Doe

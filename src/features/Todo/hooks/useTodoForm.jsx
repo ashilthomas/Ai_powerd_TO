@@ -1,5 +1,3 @@
-//make a hook that will handle the form logic for the todo form
-
 import { useState } from "react";
 
 export const useTodoForm = ({initialData}) => {
@@ -21,5 +19,16 @@ export const useTodoForm = ({initialData}) => {
   };
  
 
-  return { todo, handleChange, };
+  const resetForm = () => {
+    setTodo({
+      title: "",
+      description: "",
+      priority: "low",
+      dueDate: "",
+      tags: [],
+      ...initialData,
+    });
+  };
+
+  return { todo, handleChange, resetForm };
 };

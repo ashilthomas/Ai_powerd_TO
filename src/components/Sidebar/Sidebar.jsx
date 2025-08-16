@@ -1,16 +1,15 @@
 import { ArrowBigRight, X } from "lucide-react";
 import MyLogo from "../../assets/logo.jpg";
+import userAvatar from "../../assets/my.png";
 import NAVLINKS from "../../utils/NavLinks/NavLinks";
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
   const sidebarRef = useRef();
   useEffect(() => {
     if (sidebarOpen) {
-      //i need animation when mobile bar
       gsap.fromTo(
         sidebarRef.current,
         { width: 0, opacity: 0 },
@@ -23,7 +22,6 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
         }
       );
     } else {
-      //i need animation when mobile bar
       gsap.to(sidebarRef.current, {
         width: 0,
         opacity: 0,
@@ -32,7 +30,6 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
       });
     }
   }, [sidebarOpen]);
-  //i need animation when mobile bar
 
   return (
     <>
@@ -105,9 +102,9 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen }) {
           <div className="flex items-center gap-3 px-3 py-10 rounded-2xl bg-[var(--color-light-card-bg)] dark:bg-[var(--color-dark-card-bg)] ">
             <span>
               <img
-                src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=76&q=80"
-                alt=""
-                className="w-10 h-10 rounded-full"
+                src={userAvatar}
+                alt="User Avatar"
+                className="w-10 h-10 rounded-full object-cover"
               />
             </span>
             <div className="flex flex-col items-center gap-2">
