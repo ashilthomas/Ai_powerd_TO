@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { ArrowBigRight, X } from "lucide-react";
+import { ArrowBigRight, IdCard, X } from "lucide-react";
 import MyLogo from "../../assets/logo.jpg";
 import userAvatar from "../../assets/my.png";
 import NAVLINKS from "../../utils/NavLinks/NavLinks";
@@ -124,22 +124,15 @@ const Sidebar = React.memo(function Sidebar({ sidebarOpen, setSidebarOpen }) {
             </NavLink>
           ))}
         </nav>
-        <div className=" borderColor px-3 py-2">
-          <div className="flex items-center gap-3 px-3 py-10 rounded-2xl bg-[var(--color-light-card-bg)] dark:bg-[var(--color-dark-card-bg)] ">
-            <span>
-              <img
-                src={userAvatar}
-                alt="User Avatar"
-                className="w-10 h-10 rounded-full object-cover"
-              />
-            </span>
-            <div className="flex flex-col items-center gap-2">
-              <h2>Premium User</h2>
-              <span className="text-center cursor-pointer">
-                <ArrowBigRight className="mainDarkModeText" fill="bg-[var(--color-light-accent-vibrant-cyan)] dark:bg-[var(--color-dark-accent-blue-purple)]" size={20} />
-              </span>
-            </div>
-          </div>
+        <div className="flex items-center justify-center">
+          <button className="borderColor px-3 py-2 border rounded-full m-4 flex items-center gap-3">
+                <IdCard />
+          <h3>Premium user</h3>
+
+          </button>
+      
+   
+         
         </div>
       </aside>
     </>

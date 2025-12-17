@@ -64,9 +64,9 @@ const TodoForm = React.memo(function TodoForm({ onSubmit, initialData = {} }) {
           <ReusableInput
             type="text"
             name="tags"
-            placeholder="addtags"
+            placeholder="tags (comma separated)"
             onChange={handleChange}
-            value={todo.description}
+            value={Array.isArray(todo.tags) ? todo.tags.join(", ") : todo.tags || ""}
           />
 
           {/* //due date */}
@@ -80,7 +80,10 @@ const TodoForm = React.memo(function TodoForm({ onSubmit, initialData = {} }) {
             onChange={handleChange}
             value={todo.dueDate}
           />
-          {/* tags */}
+          {/* Submit */}
+          <button type="submit" className="mainDarkModeBtn px-5 py-3 text-sm rounded-md w-full text-white transition">
+            Save Todo
+          </button>
         </form>
       </Model>
     </div>

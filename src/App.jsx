@@ -12,6 +12,8 @@ const Setting = lazy(() => import("./pages/Setting"));
 const UserProfile = lazy(() => import("./pages/UserProfile"));
 const UserDetails = lazy(() => import("./pages/UserDetails"));
 const ErrorPage = lazy(() => import("./components/ErrorPage/ErrorPage"));
+const MyTasks = lazy(() => import("./pages/MyTasks"));
+const Callender = lazy(() => import("./pages/Callender"));
 
 // Loading fallback component
 const LoadingFallback = () => (
@@ -45,6 +47,24 @@ function App() {
           </Suspense>
         ),
         handle: { breadcrumb: "Settings" },
+      },
+      {
+        path: "my-tasks",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <MyTasks />
+          </Suspense>
+        ),
+        handle: { breadcrumb: "My Tasks" },
+      },
+      {
+        path: "calendar",
+        element: (
+          <Suspense fallback={<LoadingFallback />}>
+            <Callender />
+          </Suspense>
+        ),
+        handle: { breadcrumb: "Calendar" },
       },
       {
         path: "user",

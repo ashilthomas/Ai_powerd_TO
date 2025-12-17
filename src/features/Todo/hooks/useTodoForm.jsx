@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 
-export const useTodoForm = ({initialData}) => {
+export const useTodoForm = (initialData = {}) => {
   // Use useMemo for the initial state to avoid recreating on every render
   const initialState = useMemo(() => ({
     title: "",
@@ -16,7 +16,20 @@ export const useTodoForm = ({initialData}) => {
   // Memoize the change handler
   const handleChange = useCallback((e) => {
     const { name, value } = e.target;
-    setTodo((prev) => ({    
+    // Support comma-separated tags in a simple text input
+    if (name === "tags") {
+      const tagArray = value
+        .split(",")
+        .map((t) => t.trim())
+        .filter((t) => t.length > 0);
+      setTodo((prev) => ({
+        ...prev,
+        tags: tagArray,
+      }));
+      return;
+    }
+
+    setTodo((prev) => ({
       ...prev,
       [name]: value,
     }));

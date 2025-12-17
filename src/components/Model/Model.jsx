@@ -77,14 +77,8 @@ const Modal = React.memo(function Modal({ isOpen, onClose, children }) {
           className=" p-10 relative transform themeBg overflow-hidden rounded-lg bg-white text-left shadow-xl  sm:w-[450px] sm:max-w-lg"
         >
           <div className="modal-child ">{children}</div>
-          <div className="modal-childpx-4 py-3 flex justify-end">
-            <button
-              type="button"
-              onClick={onClose}
-              className="mainDarkModeBtn  px-5 cursor-pointer  shadow-xl py-3 text-sm  rounded-md w-full text-white  transition"
-            >
-              Add Todo
-            </button>
+          <div className="modal-child px-4 py-3 flex justify-end">
+            {/* Footer intentionally left empty; parent form should render its own actions */}
           </div>
         </div>
       </div>
